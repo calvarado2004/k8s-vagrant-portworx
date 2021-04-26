@@ -1,0 +1,27 @@
+# SOURCE: https://install.portworx.com/?operator=true&mc=false&kbver=1.21.0&b=true&s=%2Fdev%2Fvdb%2C%2Fdev%2Fvdc&j=auto&kd=%2Fdev%2Fvdd&c=px-cluster-2b334603-86dd-4887-abba-90100a5e527b&stork=true&st=k8s
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: px-cluster-2b334603-86dd-4887-abba-90100a5e527b
+  namespace: kube-system
+  annotations:
+    portworx.io/install-source: "https://install.portworx.com/?operator=true&mc=false&kbver=1.21.0&b=true&s=%2Fdev%2Fvdb%2C%2Fdev%2Fvdc&j=auto&kd=%2Fdev%2Fvdd&c=px-cluster-2b334603-86dd-4887-abba-90100a5e527b&stork=true&st=k8s"
+spec:
+  image: portworx/oci-monitor:2.6.3
+  imagePullPolicy: Always
+  kvdb:
+    internal: true
+  storage:
+    devices:
+    - /dev/vdb
+    - /dev/vdc
+    journalDevice: auto
+    kvdbDevice: /dev/vdd
+  secretsProvider: k8s
+  stork:
+    enabled: true
+    args:
+      webhook-controller: "false"
+  autopilot:
+    enabled: true
+
