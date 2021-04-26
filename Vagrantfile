@@ -39,6 +39,7 @@ Vagrant.configure("2") do |config|
       file.destination = "/tmp/local-storage-provisioner.yaml"
     end
     master.vm.provision "shell", path: "local-storage/install.sh"
+    master.vm.provision "shell", path: "portworx.sh"
   end
 
   (0..NUM_WORKERS-1).each do |i|
@@ -53,10 +54,6 @@ Vagrant.configure("2") do |config|
       worker.vm.provision "shell", path: "worker.sh",
         env: { "MASTER_IP" => MASTER_IP, "TOKEN" => TOKEN }
     end
-  end
-
-  config.vm.define "master" do |master|
-    master.vm.provision "shell", path: "portworx.sh"
   end
 
 end
