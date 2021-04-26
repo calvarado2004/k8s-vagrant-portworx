@@ -55,6 +55,8 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  master.vm.provision "shell", path: "portworx.sh"
+  config.vm.define "master" do |master|
+    master.vm.provision "shell", path: "portworx.sh"
+  end
 
 end
