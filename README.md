@@ -8,7 +8,7 @@ Includes a Portworx deployment on a 3 worker node cluster and 1 master node.
 
 It creates 3 virtual disks per worker node. Uses 6GB of RAM per node, I would recommend to have at least 32GB of RAM on your host.
 
-Portworx pods takes up to 10 minutes to become ready.
+Portworx pods will take up to 10 minutes to become ready.
 
 ```
 [~/src/k8s-vagrant-portworx]$ POD=$(kubectl get pods -o wide -n kube-system -l name=portworx | tail -1 | awk '{print $1}')
