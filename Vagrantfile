@@ -39,6 +39,11 @@ Vagrant.configure("2") do |config|
       file.destination = "/tmp/local-storage-provisioner.yaml"
     end
     master.vm.provision "shell", path: "local-storage/install.sh"
+   
+    master.vm.provision :file do |file|
+      file.source = "portworx-enterprise.yaml"
+      file.destination = "/tmp/portworx-enterprise.yaml"
+    end
     master.vm.provision "shell", path: "portworx.sh"
   end
 
