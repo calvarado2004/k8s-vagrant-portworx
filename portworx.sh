@@ -1,1 +1,1 @@
-kubectl apply -f portworx-enterprise.yaml
+kubectl apply -f /tmp/portworx-enterprise.yaml
